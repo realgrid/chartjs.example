@@ -1,0 +1,31 @@
+<html>
+<head>
+<script type="text/javascript" src="bower_components/chart.js/dist/chart.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+$(function() {
+	var url = window.location.href;
+	var queryIndex = url.indexOf("?");
+	if (queryIndex > 0) {
+		var js = url.slice(queryIndex+1, url.length);
+		if (js.indexOf(".js") < 0) {
+			js = js.concat(".js");
+		}
+		loadJS("scripts/"+js);
+	}
+})
+
+function loadJS(file) {
+    var jsElm = document.getElementById("chartScript");
+    jsElm.src = file;
+    setTimeout( function () { createChart("chartView"); },100);
+}
+</script>
+</head>
+<body>
+<div style="width:800px; height:600px">
+<canvas id="chartView" width="800" height="600"></canvas>
+</div>
+<script type="application/javascript" id="chartScript"></script>
+</body>
+</html>
